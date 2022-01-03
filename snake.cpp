@@ -55,7 +55,7 @@ void Snake::paintEvent(QPaintEvent *e)
         doDrawing();
     }else {
         QPainter qp(this);
-        menu(qp);
+        screen(qp, "Snake");
     }
 }
 
@@ -74,42 +74,15 @@ void Snake::doDrawing()
             }
         }
     }else{
-        gameOver(qp);
+        screen(qp, "Game over!!!");
     }
 }
 
-void Snake::gameOver(QPainter &qp)
+void Snake::screen(QPainter &qp, QString str)
 {
     this->window()->setWindowTitle("Snake. Result: " + QString::number(score));
 
-    QString messageNameGame = "Game over";
-    QString messageForOpenMenu = "Press \"S\" to start";
-
-    QFont font("Courier", 15, QFont::DemiBold);
-    QFontMetrics fm(font);
-
-    QFont fontSecond("Courier", 12, QFont::DemiBold);
-    QFontMetrics fms(fontSecond);
-
-    int textWidthMessageNameGame = fm.width(messageNameGame);
-    int textWidthMessageForOpenMenu = fms.width(messageForOpenMenu);
-
-    qp.setPen(QColor(Qt::white));
-    qp.setFont(font);
-    int h = height();
-    int w = width();
-
-    qp.translate(QPoint(w/2, h/2)); // centre
-
-    qp.drawText(-textWidthMessageNameGame/2, 0, messageNameGame);
-
-    qp.setFont(fontSecond);
-    qp.drawText(-textWidthMessageForOpenMenu/2, 25, messageForOpenMenu);
-}
-
-void Snake::menu(QPainter &qp)
-{
-    QString messageNameGame = "\"Snake\"";
+    QString messageNameGame = str;
     QString messageForOpenMenu = "Press \"S\" to start";
 
     QFont font("Courier", 15, QFont::DemiBold);

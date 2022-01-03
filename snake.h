@@ -55,7 +55,6 @@ private:
     void checkCollision();
     void move();
     void doDrawing();
-    void gameOver(QPainter &);
-    void menu(QPainter &);
+    void screen(QPainter &, QString);
 };
 #endif // SNAKE_H
